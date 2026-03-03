@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Safety-First Lane Change</title>
+  <title>Safety-First Lane Change Demo</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -33,6 +33,22 @@
         <p><strong>Nodes explored:</strong> <span id="nodes">—</span></p>
       </div>
 
+      <hr style="border:none;border-top:1px solid rgba(255,255,255,0.04);margin:10px 0">
+
+      <div id="params">
+        <label>Front gap (m): <span id="front-val">5.0</span></label>
+        <input id="front-gap" type="range" min="1" max="12" step="0.5" value="5">
+
+        <label>Rear gap (m): <span id="rear-val">3.0</span></label>
+        <input id="rear-gap" type="range" min="0.5" max="8" step="0.5" value="3">
+
+        <label>TTC min (s): <span id="ttc-val">1.5</span></label>
+        <input id="ttc-min" type="range" min="0.5" max="3.0" step="0.1" value="1.5">
+
+        <label>Lane-change delay (steps): <span id="lc-delay-val">1</span></label>
+        <input id="lc-delay" type="range" min="0" max="2" step="1" value="1">
+      </div>
+
       <div id="trace">
         <h4>Counterexample Trace</h4>
         <pre id="trace-output">No counterexample yet.</pre>
@@ -41,7 +57,7 @@
       <div id="playback-controls">
         <label>Playback speed: <span id="speed-label">1.0×</span></label>
         <input id="playback-speed" type="range" min="0.25" max="2" step="0.05" value="1">
-        <div class="btn-row">
+        <div class="btn-row" style="margin-top:8px">
           <button id="play-btn">Play Counterexample</button>
           <button id="pause-btn">Pause</button>
         </div>
@@ -49,7 +65,7 @@
 
       <div id="notes">
         <p>Δt = <strong>0.5s</strong>, Depth = <strong>4</strong> (horizon = 2s). Critical neighbor branching on follower in target lane.</p>
-        <p>Textures are procedural (canvas) — no external assets.</p>
+        <p class="muted">Move sliders and press "Run Safety Check" to update verdict live.</p>
       </div>
     </div>
   </div>
