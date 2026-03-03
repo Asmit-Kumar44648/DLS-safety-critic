@@ -5,21 +5,23 @@
   <title>Safety-First Lane Change</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="stylesheet" href="styles.css" />
-  <!-- Three.js CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/three@0.153.0/build/three.min.js"></script>
 </head>
 <body>
   <div id="app">
     <div id="canvas-container"></div>
+
     <div id="controls">
-      <h2>Safety-First Lane Change Demo</h2>
+      <h2>Safety-First Lane Change</h2>
+
       <label>Scenario:
         <select id="scenario-select">
           <option value="safe">Safe gap — approve</option>
           <option value="borderline">Borderline gap — reject</option>
           <option value="cutin">Aggressive cut-in — reject</option>
+          <option value="ngsim_sample">NGSIM sample (realish)</option>
         </select>
       </label>
+
       <div class="btn-row">
         <button id="reset-btn">Reset Scene</button>
         <button id="run-check-btn">Run Safety Check</button>
@@ -28,15 +30,26 @@
       <div id="status">
         <p><strong>Verdict:</strong> <span id="verdict">—</span></p>
         <p><strong>Time:</strong> <span id="time-ms">—</span> ms</p>
+        <p><strong>Nodes explored:</strong> <span id="nodes">—</span></p>
       </div>
 
       <div id="trace">
-        <h4>Counterexample Trace (if unsafe)</h4>
+        <h4>Counterexample Trace</h4>
         <pre id="trace-output">No counterexample yet.</pre>
       </div>
 
+      <div id="playback-controls">
+        <label>Playback speed: <span id="speed-label">1.0×</span></label>
+        <input id="playback-speed" type="range" min="0.25" max="2" step="0.05" value="1">
+        <div class="btn-row">
+          <button id="play-btn">Play Counterexample</button>
+          <button id="pause-btn">Pause</button>
+        </div>
+      </div>
+
       <div id="notes">
-        <p>Depth-limited search horizon = 2.0s (Δt=0.5s, D=4), critical neighbor = follower in target lane.</p>
+        <p>Δt = <strong>0.5s</strong>, Depth = <strong>4</strong> (horizon = 2s). Critical neighbor branching on follower in target lane.</p>
+        <p>Textures are procedural (canvas) — no external assets.</p>
       </div>
     </div>
   </div>
