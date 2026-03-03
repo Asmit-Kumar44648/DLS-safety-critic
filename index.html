@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Safety-First Lane Change</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Three.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.153.0/build/three.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div id="canvas-container"></div>
+    <div id="controls">
+      <h2>Safety-First Lane Change Demo</h2>
+      <label>Scenario:
+        <select id="scenario-select">
+          <option value="safe">Safe gap — approve</option>
+          <option value="borderline">Borderline gap — reject</option>
+          <option value="cutin">Aggressive cut-in — reject</option>
+        </select>
+      </label>
+      <div class="btn-row">
+        <button id="reset-btn">Reset Scene</button>
+        <button id="run-check-btn">Run Safety Check</button>
+      </div>
+
+      <div id="status">
+        <p><strong>Verdict:</strong> <span id="verdict">—</span></p>
+        <p><strong>Time:</strong> <span id="time-ms">—</span> ms</p>
+      </div>
+
+      <div id="trace">
+        <h4>Counterexample Trace (if unsafe)</h4>
+        <pre id="trace-output">No counterexample yet.</pre>
+      </div>
+
+      <div id="notes">
+        <p>Depth-limited search horizon = 2.0s (Δt=0.5s, D=4), critical neighbor = follower in target lane.</p>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
